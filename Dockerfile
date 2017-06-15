@@ -1,9 +1,9 @@
-FROM java:8
-MAINTAINER Manuel Ortiz Bey <ortiz.manuel@mozartanalytics.com>
+# Use official OpenJDK 7 as base image
+FROM openjdk:7-jdk
 
 # Set customizable env vars defaults.
-# Set Grails version (default: 3.2.8; min: 3.0.0; max: 3.2.8).
-ENV GRAILS_VERSION 3.2.8
+# Set Grails version (max version for this Docker image is: 2.5.3).
+ENV GRAILS_VERSION 2.3.11
 
 # Install Grails
 WORKDIR /usr/lib/jvm
@@ -12,7 +12,7 @@ RUN wget https://github.com/grails/grails-core/releases/download/v$GRAILS_VERSIO
     rm -rf grails-$GRAILS_VERSION.zip && \
     ln -s grails-$GRAILS_VERSION grails
 
-# Setup Grails path.
+# Setup Grails path
 ENV GRAILS_HOME /usr/lib/jvm/grails
 ENV PATH $GRAILS_HOME/bin:$PATH
 
